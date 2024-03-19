@@ -14,7 +14,7 @@ def solution(line):
     x_min = y_min = +10e+10
     for i in range(n):
         a,b,e = line[i]
-        for j in range(j,n):
+        for j in range(i,n):
             c,d,f = line[j]
             if a*d - b*c == 0: continue
             # 2. 그중 정수 교점만 따로 변수로 저장
@@ -37,11 +37,11 @@ def solution(line):
         x, y = setStar.pop()
         xStar = x - x_min
         yStar = y - y_min
-        xy[xStar][yStar] = '*'
+        xy[yStar][xStar] = '*'
     
     answer = list()
     for result in xy : answer.append(''.join(result))
     
-    5. 배열을 거꾸로 뒤집어 반환
+    # 5. 배열을 거꾸로 뒤집어 반환
     return answer[::-1]
         
