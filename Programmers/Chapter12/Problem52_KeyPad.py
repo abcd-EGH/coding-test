@@ -16,12 +16,12 @@ def solution(numbers, hand):
             answer = answer + 'R'
             r = num[number]
         else:
-            sol = check(number, l, r, hand, num)
+            sol, l, r = check(number, l, r, hand, num)
             answer = answer + sol
-            if sol == 'L':
-                l = num[number]
-            else:
-                r = num[number]
+            # if sol == 'L':
+            #     l = num[number]
+            # else:
+            #     r = num[number]
     return answer
 
 def check(number, l, r, hand, num):
@@ -33,16 +33,15 @@ def check(number, l, r, hand, num):
     l_distance = abs(l[0]-num[number][0]) + abs(l[1]-num[number][1])
     r_distance = abs(r[0]-num[number][0]) + abs(r[1]-num[number][1])
     if l_distance < r_distance:
-        return 'L'
+        return 'L', num[number], r
     elif l_distance > r_distance:
-        return 'R'
+        return 'R', l, num[number]
     elif l_distance == r_distance:
         if hand == 'right':
-            return 'R'
+            return 'R', l, num[number]
         else:
-            return 'L'
+            return 'L', num[number], r
         
-
 tests = [[[1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5],"right"],
          [[7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2], "left"],
          [[1, 2, 3, 4, 5, 6, 7, 8, 9, 0], "right"]]
