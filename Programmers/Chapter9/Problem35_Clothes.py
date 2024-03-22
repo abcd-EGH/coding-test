@@ -24,11 +24,3 @@ for idx, (test, result) in enumerate(zip(tests,results)):
         print(f'test{idx+1} 성공')
     else:
         print(f'test{idx+1} 실패')
-
-from itertools import product
-dict_ = {'a':[1,2,3], 'b':[4,5,6], 'c':[7,8,9]}
-
-case_list = list(product(*dict_.values()))
-print(case_list)
-
-print(dict_.values())
