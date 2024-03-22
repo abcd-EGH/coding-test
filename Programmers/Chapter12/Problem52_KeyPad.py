@@ -1,5 +1,5 @@
 def solution(numbers, hand):
-    answer = ''
+    answer = []
     
     l = [0, 0]
     r = [0, 2]
@@ -10,19 +10,19 @@ def solution(numbers, hand):
     
     for number in numbers:
         if number in [1, 4, 7]:
-            answer = answer + 'L'
+            answer.append('L')
             l = num[number]
         elif number in [3, 6, 9]:
-            answer = answer + 'R'
+            answer.append('R')
             r = num[number]
         else:
             sol, l, r = check(number, l, r, hand, num)
-            answer = answer + sol
+            answer.append(sol)
             # if sol == 'L':
             #     l = num[number]
             # else:
             #     r = num[number]
-    return answer
+    return ''.join(answer)
 
 def check(number, l, r, hand, num):
     # 유클리드 거라
