@@ -1,8 +1,9 @@
-class Node:
+from Node import Node
+
+class Node(Node):
     def __init__(self, value):
         self.data = value
         self.next = None
-
 
 class LinkedList:
     def __init__(self, size):
