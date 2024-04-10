@@ -18,8 +18,9 @@ class CircularQueue:
             raise IndexError("Can't dequeue anymore. There is no data.")
 
         self.front = (self.front + 1) % self.capacity # front 위치 수정 (1만큼 증가)
+        temp = self.data[self.front] # front가 가르키는 값을 반환하기 위해 임시로 저장
         self.data[self.front] = None # front가 가르키는 data 삭제
-        return True
+        return temp
 
     def isEmpty(self) -> bool:
         return self.front == self.rear
@@ -40,6 +41,9 @@ class CircularQueue:
         print()
 
 class RingQueue(CircularQueue):
+    def __init__(self, capacity: int):
+        super().__init__(capacity)
+
     def enqueue(self, value):
         self.rear = (self.rear + 1) % self.capacity # rear 위치 수정 (1만큼 증가)
         self.data[self.rear] = value # rear가 가르키는 위치에 값 저장
