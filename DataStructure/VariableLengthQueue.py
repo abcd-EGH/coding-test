@@ -1,5 +1,5 @@
 from Node import Node
-from DoubleLinkedList_JH import DoubleLinkedList_JH
+from DataStructure.DoubleLinkedList import DoubleLinkedList_JH
 
 class Queue:
     def __init__(self):
