@@ -40,6 +40,9 @@ class CircularQueue:
             print(self.data[i%self.capacity], end=' ')
         print()
 
+    def __bool__(self):
+        return not self.isEmpty()
+
 class RingQueue(CircularQueue):
     def __init__(self, capacity: int):
         super().__init__(capacity)
