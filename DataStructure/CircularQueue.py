@@ -1,39 +1,48 @@
 class CircularQueue:
-    def __init__(self, k: int):
-        self.n = k + 1 # k개의 원소를 저장하는 원형 큐 초기화 시, 버퍼인 data는 k+1의 [0]을 지니도록 생성
-        self.data = [0] * self.n
-        self.front = 0
-        self.rear = 0
+    def __init__(self, capacity: int):
+        self.capacity = capacity # capacity개의 원소를 저장하는 원형 큐 초기화
+        self.data = [None] * self.capacity # 버퍼인 data는 capacity+1의 [0]을 지니도록 생성
+        self.front = 0 # 첫번째 요소 바로 이전 위치(인덱스)
+        self.rear = 0 # 마지막 요소 위치(인덱스)
 
-    def enqueue(self, value: int) -> bool:
+    def enqueue(self, value) -> bool:
         if self.isFull(): # 큐가 가득 찼을 때 enqueue 수행 시 False를 return
             return False
 
-        self.data[self.front] = value # 값 저장 시, data에서 front 인덱스가 가리키는 버퍼에 저장
-        self.front = (self.front + 1) % self.n # front 위치 수정 (1만큼 증가)
-        return True 
+        self.rear = (self.rear + 1) % self.capacity # rear 위치 수정 (1만큼 증가)
+        self.data[self.rear] = value # rear가 가르키는 위치에 값 저장
+        return True
 
     def dequeue(self) -> bool:
         if self.isEmpty(): # 큐가 비었을 때 dequeue 수행 시 False를 return
-            return False
+            raise IndexError("Can't dequeue anymore. There is no data.")
 
-        self.rear = (self.rear + 1) % self.n # rear 위치 수정 (1만큼 증가)
+        self.front = (self.front + 1) % self.capacity # front 위치 수정 (1만큼 증가)
+        self.data[self.front] = None # front가 가르키는 data 삭제
         return True
-        
-    def front(self) -> int:
-        if self.isEmpty():
-            return -1
 
-        return self.data[self.rear]
-
-    def rear(self) -> int:
-        if self.isEmpty():
-            return -1
-
-        return self.data[self.front - 1] 
-
-    def is_empty(self) -> bool:
+    def isEmpty(self) -> bool:
         return self.front == self.rear
 
-    def is_full(self) -> bool:
-        return (self.front + 1) % self.n == self.rear # 큐가 가득 찼는지 여부 확인
+    def isFull(self) -> bool:
+        return self.front == (self.rear + 1) % self.capacity
+    
+    def peek(self):
+        if not self.isEmpty():
+            return self.data[self.front+1]
+    
+    def size(self):
+        return (self.rear - self.front + self.capacity) % self.capacity
+    
+    def display(self):
+        for i in range(self.front+1, self.front+1+self.size()):
+            print(self.data[i%self.capacity], end=' ')
+        print()
+
+class RingQueue(CircularQueue):
+    def enqueue(self, value):
+        self.rear = (self.rear + 1) % self.capacity # rear 위치 수정 (1만큼 증가)
+        self.data[self.rear] = value # rear가 가르키는 위치에 값 저장
+        if self.isEmpty():
+            self.front = (self.front + 1) % self.capacity
+            self.data[self.front] = None # front가 가르키는 data 삭제
