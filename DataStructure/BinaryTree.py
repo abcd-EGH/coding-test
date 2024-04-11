@@ -5,6 +5,9 @@ class BTNode:
         self.data = data
         self.left = left
         self.right = right
+        
+    def isLeaf(self):
+        return self.left is None and self.right is None
 
 def preorder(n): # 전위 순회
     if n is not None:
@@ -49,3 +52,19 @@ def calc_height(n): # 이진 트리의 높이 구하기 height = max(h_left, h_r
     # else:              return hright + 1
     return max(hleft, hright) + 1
 
+if __name__ == "__main__":
+    d = BTNode('D', None, None)
+    e = BTNode('E', None, None)
+    b = BTNode('B', d, e)
+    f = BTNode('F', None, None)
+    c = BTNode('C', f, None)
+    root = BTNode('A', b, c)
+
+    print('\n   In-Order : ', end=''); inorder(root)
+    print('\n  Pre-Order : ', end=''); preorder(root)
+    print('\n Post-Order : ', end=''); postorder(root)
+    print('\nLevel-Order : ', end=''); levelorder(root)
+    print()
+    
+    print(" 노드의 개수 = %d개" % count_node(root))
+    print(" 트리의 높이 = %d" % calc_height(root))
