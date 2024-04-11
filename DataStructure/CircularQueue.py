@@ -1,5 +1,5 @@
 class CircularQueue:
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int = 10):
         self.capacity = capacity # capacity개의 원소를 저장하는 원형 큐 초기화
         self.data = [None] * self.capacity # 버퍼인 data는 capacity+1의 [0]을 지니도록 생성
         self.front = 0 # 첫번째 요소 바로 이전 위치(인덱스)
