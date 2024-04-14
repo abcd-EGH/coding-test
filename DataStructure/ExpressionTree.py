@@ -12,7 +12,7 @@ def evaluate(node):
         elif node.data == '/' : return op1 / op2
 
 from BinaryTree import *
-def buildETree( expr ): # 후위표기 수식을 이용해 수식트리를 만들고 root를 반환
+def buildETree(expr): # 후위표기 수식을 이용해 수식트리를 만들고 root를 반환
     if len(expr) == 0 :                 
         return None
 
