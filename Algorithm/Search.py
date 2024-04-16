@@ -45,30 +45,3 @@ def interpolation_search(A, key, low, high): # 보간 탐색 - 탐색 키가 존
         else:
             low = middle + 1 # low를 middle + 1로 바꾸어 재탐색
     return -1
-
-class BSTNode: # 이진 탐색 트리 노드
-    def __init__(self, key, value) -> None:
-        self.key = key
-        self.value = value
-        self.left = None
-        self.right = None
-
-def search_bst(n, key): # self.key가 key인 노드를 찾는 재귀 함수
-    if n == None:
-        return None
-    elif key == n.key:
-        return n
-    elif key < n.key:
-        return search_bst(n.left, key)
-    else:
-        return search_bst(n.right, key)
-
-def search_value_bst(n, value): # self.value가 value인 노드를 찾는 재귀 함수
-    if n == None:
-        return None
-    elif value == n.value:
-        return n
-    elif value < n.value:
-        return search_value_bst(n.left, value)
-    else:
-        return search_value_bst(n.right, value)
