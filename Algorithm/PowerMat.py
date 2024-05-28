@@ -1,4 +1,4 @@
-def powerMat(x, n):
+def powerMat(x, n): # 거듭제곱 함수
     if n == 1:
         return x
     if n % 2 == 0:
@@ -6,7 +6,7 @@ def powerMat(x, n):
     elif n % 2 == 1:
         return multMat(x, powerMat(multMat(x, x), (n-1) / 2))
     
-def multMat(x1, x2):
+def multMat(x1, x2): # 두 행렬을 곱하는 함수
     n = len(x1)
     result = [[0 for _ in range(n)] for _ in range(n)] # n*n 영행렬 초기화
     for i in range(n): # [i][_]
