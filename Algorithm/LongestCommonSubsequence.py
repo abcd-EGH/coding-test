@@ -15,9 +15,10 @@ def lcs_dp(X, Y):
     for i in range(m+1):
         pass
 
-x = 'HELLO WORLD'
-y = 'GAME OVER'
-m = len(x)
-n = len(y)
+if __name__ == "__main__":
+    x = 'HELLO WORLD'
+    y = 'GAME OVER'
+    m = len(x)
+    n = len(y)
 
-print(lcs_recur(x, y, m, n)) # 재귀 활용
+    print(lcs_recur(x, y, m, n)) # 재귀 활용
