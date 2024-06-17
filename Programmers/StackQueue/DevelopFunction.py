@@ -1,3 +1,4 @@
+# 기능개발
 def solution(progresses, speeds):
     times = []
     for progress, speed in zip(progresses, speeds):
